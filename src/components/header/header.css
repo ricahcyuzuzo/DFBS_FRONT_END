@@ -5,9 +5,10 @@
     padding: 2rem;
     color: #fff;
     text-align: left;
+    height:400px;
 }
 .exchangebtn{
-    background-color: #FF8C0F;
+    background-color: #FF8C0F !important;
     width:90%;
     color: #fff;
 }

@@ -11,7 +11,7 @@ const Header = () => {
               Find the solution of the problems in exchanging currency and
               transferring money digitally to meet your needs and satisfaction.
             </p>
-            <button className="btn exchangebtn fs-5">EXCHANGE NOW</button>
+            <button className="btn fs-5 exchangebtn">EXCHANGE NOW</button>
           </div>
         </div>
       </div>
