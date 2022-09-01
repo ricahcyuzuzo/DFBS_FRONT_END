@@ -1,0 +1,13 @@
+.header{
+    background-image: url(../../assets/images/headerImg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2rem;
+    color: #fff;
+    text-align: left;
+}
+.exchangebtn{
+    background-color: #FF8C0F;
+    width:90%;
+    color: #fff;
+}
