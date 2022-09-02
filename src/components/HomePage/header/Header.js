@@ -5,13 +5,15 @@ const Header = () => {
     <>
       <div className="container-fluid header">
         <div className="row ">
-          <div className="col col-4 ">
+          <div className="col col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
             <h3 className="mb-4">Digital Forex Bureau System</h3>
-            <p className="fs-6">
+            <p className="fs-4">
               Find the solution of the problems in exchanging currency and
               transferring money digitally to meet your needs and satisfaction.
             </p>
-            <button className="btn fs-5 exchangebtn">EXCHANGE NOW</button>
+            <button className="btn fs-5 text-light exchangebtn">
+              EXCHANGE NOW
+            </button>
           </div>
         </div>
       </div>
