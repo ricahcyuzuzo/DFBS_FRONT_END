@@ -1,0 +1,12 @@
+table{
+    text-align: center;
+}
+table tr{
+    padding: 2rem;
+    margin-top: 15px;
+ 
+}
+table th{
+    margin-right: 2px;
+    padding-left: 2px;
+}
