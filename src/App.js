@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
-import IndexPage from "./pages/Index/IndexPage";
+import Exchange from "./pages/exchangePage/Exchange";
+// import IndexPage from "./pages/Index/IndexPage";
 
 function App() {
   return (
     <div className="App">
-      <IndexPage />
+      {/* <IndexPage /> */}
+      <Exchange />
     </div>
   );
 }
