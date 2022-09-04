@@ -5,6 +5,7 @@ import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import IndexPage from "./pages/Index/IndexPage";
 import ClientProfile from "./pages/Client profile/ClientProfile";
+import Admin from "./pages/Admin/Admin";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       {/* <Exchange /> */}
       {/* <LoginPage /> */}
       {/* <RegisterPage /> */}
-      <ClientProfile />
+      {/* <ClientProfile /> */}
+      <Admin />
     </div>
   );
 }
