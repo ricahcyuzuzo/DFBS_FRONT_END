@@ -1,6 +1,7 @@
 import React from "react";
 import Content from "./Content";
 import SideBar from "./SideBar";
+import TopBar from "./TopBar";
 
 const Admin = () => {
   return (
@@ -24,17 +25,7 @@ const Admin = () => {
             className="row"
           >
             <div className="container">
-              <div
-                style={{ borderBottom: "1px solid #000", padding: "2rem" }}
-                className="row"
-              >
-                <div className="col col-4 fs-5 text-start">
-                  <h4>DFS Admin Panel</h4>
-                </div>
-                <div className="col col-8 fs-5 text-end">
-                  <h4 style={{ cursor: "pointer" }}>Logout</h4>
-                </div>
-              </div>
+              <TopBar />
               <div className="row">
                 <Content />
               </div>
