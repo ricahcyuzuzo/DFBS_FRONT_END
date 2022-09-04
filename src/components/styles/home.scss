@@ -63,3 +63,18 @@
     }
   }
 }
+.body {
+  padding: 5rem;
+  text-align: center;
+  p {
+    font-weight: 600;
+  }
+  button {
+    margin-top: 2rem;
+    background-color: $yellow;
+    border-radius: 25px;
+    color: $white;
+    border: none;
+    padding: 10px 20px;
+  }
+}

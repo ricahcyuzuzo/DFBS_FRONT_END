@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Footer/Footer";
 import HomeHeader from "../Headers/HomeHeader";
 import "../styles/home.scss";
 
@@ -74,6 +75,20 @@ function Home() {
           </div>
         </div>
       </div>
+      <div className="container">
+        <div className="body">
+          <p>
+            Probally, you must be familiar with exchanging through banks and
+            traditional providers. That is the samething we are doing but
+            online!. Our smart tech means are more efficient which means you get
+            a great rate. Every time.
+          </p>
+          <a href="exchange">
+            <button>GET STARTED</button>
+          </a>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }
