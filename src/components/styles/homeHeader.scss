@@ -1,0 +1,26 @@
+@import "mixins";
+@import "colors";
+
+.header-container {
+  @include flex-space;
+  padding: 1rem 5rem;
+  img {
+    width: 50px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      list-style: none;
+      display: inline-block;
+      padding-left: 15px;
+      button {
+        border: none;
+        border-radius: 10px;
+        background-color: $yellow;
+        color: $white;
+        padding: 5px 15px;
+      }
+    }
+  }
+}
