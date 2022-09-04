@@ -1,0 +1,77 @@
+@import "mixins";
+@import "colors";
+
+.headerr {
+  position: relative;
+  height: 50vh;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .header-contents {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+.form-container {
+  position: relative;
+  padding: 0px 5rem;
+  margin-top: -15%;
+  h1 {
+    margin-bottom: 2rem;
+  }
+  .exchange-container {
+    margin: 0px auto;
+    width: 60%;
+    border-radius: 10px;
+    border: 4px solid $blue;
+    padding: 3rem;
+    background-color: $lightGray;
+    padding-top: 4rem;
+    button {
+      background-color: $blue;
+      margin-top: 1rem;
+      width: 100%;
+      color: $white;
+      padding: 0.7rem;
+    }
+    .inputs-container {
+      @include flex-space;
+      div {
+        &:first-child {
+          margin-right: 7.5px;
+        }
+        &:last-child {
+          margin-left: 7.5px;
+        }
+      }
+      .input {
+        position: relative;
+        width: 50%;
+
+        input {
+          height: 45px;
+          border: 2px solid $blue !important;
+          width: 100%;
+          outline-color: $blue;
+          padding: 10px;
+        }
+        .select {
+          position: absolute;
+          right: 0;
+          top: 0;
+          select {
+            height: 45px;
+            background-color: $blue;
+            color: $white;
+            border: none;
+            padding: 0px 10px;
+            outline-color: $blue;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+}
