@@ -3,7 +3,7 @@ import Contents from "./components/contents/Contents";
 import ProfileNav from "./components/ProfileNav";
 import SideBar from "./components/sidebar/SideBar";
 import Footer from "../../components/Footer/Footer";
-const ClientProfile = () => {
+const Profile = () => {
   return (
     <>
       <div className="container-fluid section">
@@ -36,4 +36,4 @@ const ClientProfile = () => {
   );
 };
 
-export default ClientProfile;
+export default Profile;

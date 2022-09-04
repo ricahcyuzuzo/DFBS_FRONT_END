@@ -5,6 +5,7 @@ import {
   SET_USER_PHONE,
   SET_USER_TOKEN,
   RESET_USER,
+  SET_USER_ADDRESS,
 } from "../actions/user";
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   email: "",
   role: "",
   token: "",
+  address: "",
 };
 
 const user = (state = initialState, action) => {
@@ -22,6 +24,9 @@ const user = (state = initialState, action) => {
 
     case SET_USER_EMAIL:
       return { ...state, email: action.payload };
+
+    case SET_USER_ADDRESS:
+      return { ...state, address: action.payload };
 
     case SET_USER_TOKEN:
       return { ...state, token: action.payload };
@@ -39,6 +44,7 @@ const user = (state = initialState, action) => {
         email: "",
         role: "",
         token: "",
+        address: "",
       };
 
     default:

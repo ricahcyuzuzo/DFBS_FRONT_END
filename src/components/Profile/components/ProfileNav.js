@@ -40,7 +40,13 @@ const ProfileNav = () => {
                 id="navbarNavAltMarkup"
               >
                 <div class="navbar-nav">
-                  <a class="nav-link  ">Logout</a>
+                  <a
+                    class="nav-link"
+                    href="logout"
+                    style={{ color: "#ff8c0f" }}
+                  >
+                    Logout
+                  </a>
                 </div>
               </div>
             </div>

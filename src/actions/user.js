@@ -3,6 +3,7 @@ export const SET_USER_PHONE = "SET_USER_PHONE";
 export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_ROLE = "SET_USER_ROLE";
 export const SET_USER_TOKEN = "SET_USER_TOKEN";
+export const SET_USER_ADDRESS = "SET_USER_ADDRESS";
 export const RESET_USER = "RESET_USER";
 
 export const setUserFullName = (names) => (dispatch) => {
@@ -16,6 +17,13 @@ export const setUserPhone = (phone) => (dispatch) => {
   dispatch({
     type: SET_USER_PHONE,
     payload: phone,
+  });
+};
+
+export const setAddress = (address) => (dispatch) => {
+  dispatch({
+    type: SET_USER_ADDRESS,
+    payload: address,
   });
 };
 

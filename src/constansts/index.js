@@ -1,4 +1,4 @@
+const mode = "dev";
 module.exports = {
-  mode: "dev",
-  backendUrl: this.mode === "dev" ? "http://localhost:500" : "",
+  backendUrl: mode === "dev" ? "http://localhost:8080/api" : "",
 };
