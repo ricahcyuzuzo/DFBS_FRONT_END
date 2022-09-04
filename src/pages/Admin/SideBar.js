@@ -7,7 +7,7 @@ const SideBar = () => {
         <div className="col">
           {" "}
           <a class="navbar-brand d-flex" href="#">
-            <img src={require("../../../assets/images/logo1.png")} alt="logo" />
+            <img src={require("../../assets/images/logo1.png")} alt="logo" />
             <h1
               style={{ marginTop: "15px", marginLeft: "15px" }}
               className="fs-3 text-light"
