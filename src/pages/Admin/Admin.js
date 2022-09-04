@@ -1,4 +1,5 @@
 import React from "react";
+import Content from "./components/Content";
 import SideBar from "./components/SideBar";
 
 const Admin = () => {
@@ -11,11 +12,11 @@ const Admin = () => {
             height: "700px",
             padding: "2rem",
           }}
-          className="col col-3 text-center fs-5 text-light"
+          className="col col-2 text-center fs-5 text-light"
         >
           <SideBar />
         </div>
-        <div className="col col-9 fs-5 text-black">
+        <div className="col col-10 fs-5 text-black">
           <div
             style={{
               height: "700px",
@@ -31,41 +32,11 @@ const Admin = () => {
                   <h4>DFS Admin Panel</h4>
                 </div>
                 <div className="col col-8 fs-5 text-end">
-                  <h4>Logout</h4>
+                  <h4 style={{ cursor: "pointer" }}>Logout</h4>
                 </div>
               </div>
               <div className="row">
-                <div style={{ padding: "2rem" }} className="container">
-                  <h4 className="text-start">DASHBOARD</h4>
-                  <div style={{ cursor: "pointer" }} className="col col-12">
-                    <div class="row row-cols-1 row-cols-md-2 g-4">
-                      <div class="col col-lg-6">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">3</h5>
-                            <p class="card-text">Currencies</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col col-lg-6">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">6</h5>
-                            <p class="card-text">Clients</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col col-lg-12">
-                        <div class="card">
-                          <div class="card-body">
-                            <h5 class="card-title">6</h5>
-                            <p class="card-text">Clients</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Content />
               </div>
             </div>
           </div>
