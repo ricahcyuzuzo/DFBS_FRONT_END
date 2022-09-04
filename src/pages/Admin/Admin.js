@@ -1,6 +1,6 @@
 import React from "react";
-import Content from "./components/Content";
-import SideBar from "./components/SideBar";
+import Content from "./Content";
+import SideBar from "./SideBar";
 
 const Admin = () => {
   return (
