@@ -7,12 +7,14 @@ import UnProtectedRoute from "./controller/UnProtectedRoute";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./components/Register";
 import Home from "./components/Home";
+import Admin from "./pages/Admin/Admin";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/admin" element={<Admin />} />
           {/* <Route exact path="/:id" element={<Facility />} /> */}
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/login" element={<Login />} />
