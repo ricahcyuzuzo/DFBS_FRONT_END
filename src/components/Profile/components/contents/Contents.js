@@ -50,9 +50,27 @@ const Contents = ({ activeTab }) => {
                     </>
                   ) : (
                     <>
-                      <tr>
-                        <td></td>
-                      </tr>
+                      {transactions.map((item, i) => (
+                        <tr>
+                          <td>
+                            {item.amountPaid} {item.fromCurrency}
+                          </td>
+                          <td>
+                            {item.amountToGet} {item.toCurrency}
+                          </td>
+                          <td>{new Date(item.createdAt).toDateString()}</td>
+                          <td>{item.received ? "Yes" : "No"}</td>
+                          <td
+                            className={
+                              item.status == "Paid"
+                                ? "text-success"
+                                : "text-danger"
+                            }
+                          >
+                            <td>{item.status}</td>
+                          </td>
+                        </tr>
+                      ))}
                     </>
                   )}
                 </tbody>

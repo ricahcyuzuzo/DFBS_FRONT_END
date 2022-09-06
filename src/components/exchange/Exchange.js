@@ -9,7 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import axios from "axios";
 import Loader from "../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 function Exchange() {
+  const navigate = useNavigate();
   const { email, fullName, phone, role, token, address } = useSelector(
     (state) => state.user
   );
@@ -91,37 +93,43 @@ function Exchange() {
             setShowLoader(false);
             if (response.status !== "successful") {
               toastMessage("Error", "Transaction failed!");
+              saveTransaction("Failed");
             } else {
               closePaymentModal();
               toastMessage("success", "Transaction paid successfull!");
-              // setShowLoader(true);
-              // axi.post(
-              //   process.env.REACT_APP_BACKEND_URL + "/cart/completedOrder2/",
-              //   {
-              //     i: item._id,
-              //     totalAmount: response.amount,
-              //     transactionId: response.transaction_id,
-              //     token,
-              //   }
-              // )
-              //   .then((res) => {
-              //     toastMessage("success", res.data.msg);
-              //     navigate("/profile/completedOrders");
-              //     window.location.reload();
-              //   })
-              //   .catch((error) => {
-              //     setShowLoader(false);
-              //     errorHandler(error);
-              //   });
+              saveTransaction("Paid");
             }
           },
           onClose: () => {
-            console.log("closed...");
+            saveTransaction("Cancelled");
             setShowLoader(false);
           },
         });
       }
     }
+  };
+
+  const saveTransaction = (status) => {
+    setShowLoader(true);
+    axios
+      .post(backendUrl + "/transactions/save/", {
+        fromCurrency: "RWF",
+        toCurrency,
+        amountPaid: amount,
+        amountToGet,
+        phoneOrAccount,
+        status,
+        token,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setShowLoader(false);
+        navigate("/profile");
+      })
+      .catch((error) => {
+        setShowLoader(false);
+        errorHandler(error);
+      });
   };
 
   return (
@@ -169,6 +177,7 @@ function Exchange() {
           </div>
           <div className="my-3">
             <input
+              type="number"
               className="form-control"
               value={phoneOrAccount}
               onChange={(e) => setPhoneOrAccount(e.target.value)}
