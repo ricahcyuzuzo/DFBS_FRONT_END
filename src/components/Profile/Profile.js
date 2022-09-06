@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Contents from "./components/contents/Contents";
 import ProfileNav from "./components/ProfileNav";
 import SideBar from "./components/sidebar/SideBar";
 import Footer from "../../components/Footer/Footer";
 const Profile = () => {
+  const [activeTab, setActiveTab] = useState("transactions");
   return (
     <>
       <div className="container-fluid section">
@@ -24,10 +25,10 @@ const Profile = () => {
             style={{ borderRight: "2px solid #0955B5", height: "400px" }}
             className="col col-3 d-flex text-start fs-5 p-2  text-black"
           >
-            <SideBar />
+            <SideBar activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
           <div className="col col-9">
-            <Contents />
+            <Contents activeTab={activeTab} />
           </div>
         </div>
       </div>

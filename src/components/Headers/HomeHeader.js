@@ -1,7 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "../styles/homeHeader.scss";
 
 function HomeHeader() {
+  const { email } = useSelector((state) => state.user);
   return (
     <div className="header-container">
       <table>
@@ -24,16 +26,28 @@ function HomeHeader() {
           <li>
             <a href="#">Contact us</a>
           </li>
-          <li>
-            <a href="login">
-              <button>Login</button>
-            </a>
-          </li>
-          <li>
-            <a href="register">
-              <button> Register</button>
-            </a>
-          </li>
+          {email != "" ? (
+            <>
+              <li>
+                <a href="/profile">
+                  <button>Profile</button>
+                </a>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <a href="/login">
+                  <button>Login</button>
+                </a>
+              </li>
+              <li>
+                <a href="/register">
+                  <button> Register</button>
+                </a>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>

@@ -1,37 +1,67 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { backendUrl } from "../../../../constansts";
+import { errorHandler } from "../../../../helpers";
+import Loader from "../../../Loader/Loader";
 import "./contents.css";
-const Contents = () => {
+const Contents = ({ activeTab }) => {
+  const { token } = useSelector((state) => state.user);
+  const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(backendUrl + "/transactions/all/?token=" + token)
+      .then((res) => {
+        console.log(res.data);
+        setLoading(false);
+        setTransactions(res.data.transactions);
+      })
+      .catch((error) => {
+        setLoading(false);
+        errorHandler(error);
+      });
+  }, []);
   return (
     <>
       <div className="container-fluid">
-        <h1 className="text-black fs-3 text-start">My Transactions</h1>
-        <div className="container">
-          <table style={{ padding: "2rem" }} border="0">
-            <th>Amount paid</th>
-            <th>Amount received</th>
-            <th>Date</th>
-            <th>Status</th>
-            <tr>
-              <td>1032 RWF</td>
-              <td>1 USD</td>
-              <td>13/07/2022 14:45</td>
-              <td>completed</td>
-            </tr>
-            <tr>
-              <td>2064 RWF</td>
-              <td>2 USD</td>
-              <td>22/07/2022 12:05</td>
-              <td>failed</td>
-            </tr>
-            <tr>
-              <td>2064 RWF</td>
-              <td>2 USD</td>
-              <td>13/08/2022 11:50</td>
-              <td>pending</td>
-            </tr>
-          </table>
-        </div>
+        {activeTab == "transactions" && (
+          <>
+            <h1 className="text-black fs-3 text-start">My Transactions</h1>
+            <div className="container">
+              <table className="table table-bordered">
+                <thead>
+                  <th>Amount Paid</th>
+                  <th>Amount To Received</th>
+                  <th>Date</th>
+                  <th>Received</th>
+                  <th>Status</th>
+                </thead>
+                <tbody>
+                  {transactions.length == 0 ? (
+                    <>
+                      <tr>
+                        <td colSpan={5}>
+                          <span>No trasactions found</span>
+                        </td>
+                      </tr>
+                    </>
+                  ) : (
+                    <>
+                      <tr>
+                        <td></td>
+                      </tr>
+                    </>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </div>
+      <Loader showLoader={loading} />
     </>
   );
 };

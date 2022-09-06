@@ -177,7 +177,7 @@ function Exchange() {
           </div>
           <small>
             NB: After successful payment, we will transfer the exchange amount
-            to the account number of phone number specified.
+            to the account number or phone number specified.
           </small>
           <div>
             <button className="btn" onClick={() => handlePay()}>

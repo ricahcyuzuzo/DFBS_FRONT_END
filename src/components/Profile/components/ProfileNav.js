@@ -42,7 +42,14 @@ const ProfileNav = () => {
                 <div class="navbar-nav">
                   <a
                     class="nav-link"
-                    href="logout"
+                    href="/exchange"
+                    style={{ color: "#ff8c0f" }}
+                  >
+                    Exchange
+                  </a>{" "}
+                  <a
+                    class="nav-link"
+                    href="/logout"
                     style={{ color: "#ff8c0f" }}
                   >
                     Logout
