@@ -29,6 +29,7 @@ function Exchange() {
   useEffect(() => {
     calculateAmountToGet();
   }, [toCurrency, amount]);
+
   useEffect(() => {
     fetchCurrencies();
   }, []);
@@ -36,7 +37,8 @@ function Exchange() {
   const calculateAmountToGet = () => {
     // const from = currencies.find((item) => item.code == fromCurrency);
     const to = currencies.find((item) => item.code == toCurrency);
-    setAmountToGet(to?.sellPrice * amount);
+    console.log("to", to);
+    setAmountToGet(amount / to?.sellPrice);
   };
 
   function compare(a, b) {
@@ -61,7 +63,11 @@ function Exchange() {
         <div className="exchange-container">
           <div className="inputs-container">
             <div className="input">
-              <input type="text" value={amount} />
+              <input
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
               <div className="select">
                 <select onChange={(e) => setFromCurrency(e.target.value)}>
                   {/* {currencies.map((item, i) => (
@@ -76,7 +82,8 @@ function Exchange() {
             <div className="input">
               <input type="text" disabled value={amountToGet} />
               <div className="select">
-                <select onChange={() => calculateAmountToGet()}>
+                <select onChange={(e) => setToCurrenyc(e.target.value)}>
+                  <option disabled selected></option>
                   {currencies.sort(compare).map((item, i) => (
                     <option key={i} value={item.code}>
                       {item.code}
