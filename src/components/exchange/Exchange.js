@@ -1,8 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/exchange.scss";
 import HomeHeader from "../Headers/HomeHeader";
 import Footer from "../Footer/Footer";
+import { backendUrl } from "../../constansts";
+import { errorHandler } from "../../helpers";
+import { setCurrencies } from "../../actions/currencies";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 function Exchange() {
+  const dispatch = useDispatch();
+  const { currencies } = useSelector((state) => state.currencies);
+  const [amountToGet, setAmountToGet] = useState(0);
+  const [amount, setAmount] = useState(1);
+  const [fromCurrency, setFromCurrency] = useState("");
+  const [toCurrency, setToCurrenyc] = useState("");
+
+  const fetchCurrencies = () => {
+    axios
+      .get(backendUrl + "/currencies/all/")
+      .then((res) => {
+        dispatch(setCurrencies(res.data.result));
+      })
+      .catch((error) => {
+        errorHandler(error);
+      });
+  };
+
+  useEffect(() => {
+    calculateAmountToGet();
+  }, [toCurrency, amount]);
+  useEffect(() => {
+    fetchCurrencies();
+  }, []);
+
+  const calculateAmountToGet = () => {
+    // const from = currencies.find((item) => item.code == fromCurrency);
+    const to = currencies.find((item) => item.code == toCurrency);
+    setAmountToGet(to?.sellPrice * amount);
+  };
+
+  function compare(a, b) {
+    if (a.code < b.code) {
+      return -1;
+    }
+    if (a.code > b.code) {
+      return 1;
+    }
+    return 0;
+  }
   return (
     <>
       <div className="headerr">
@@ -16,18 +61,27 @@ function Exchange() {
         <div className="exchange-container">
           <div className="inputs-container">
             <div className="input">
-              <input type="text" />
+              <input type="text" value={amount} />
               <div className="select">
-                <select>
+                <select onChange={(e) => setFromCurrency(e.target.value)}>
+                  {/* {currencies.map((item, i) => (
+                    <option key={i} value={item.code}>
+                      {item.code}
+                    </option>
+                  ))} */}
                   <option>RWF</option>
                 </select>
               </div>
             </div>
             <div className="input">
-              <input type="text" />
+              <input type="text" disabled value={amountToGet} />
               <div className="select">
-                <select>
-                  <option>RWF</option>
+                <select onChange={() => calculateAmountToGet()}>
+                  {currencies.sort(compare).map((item, i) => (
+                    <option key={i} value={item.code}>
+                      {item.code}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

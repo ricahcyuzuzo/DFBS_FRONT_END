@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrencies } from "../../actions/currencies";
 import { backendUrl } from "../../constansts";
 import { errorHandler } from "../../helpers";
 import Footer from "../Footer/Footer";
@@ -7,8 +9,8 @@ import HomeHeader from "../Headers/HomeHeader";
 import "../styles/home.scss";
 
 function Home() {
-  const [currencies, setCurrencies] = useState([]);
-
+  const dispatch = useDispatch();
+  const { currencies } = useSelector((state) => state.currencies);
   useEffect(() => {
     fetchCurrencies();
   }, []);
@@ -18,6 +20,7 @@ function Home() {
       .get(backendUrl + "/currencies/all/")
       .then((res) => {
         setCurrencies(res.data.result);
+        dispatch(setCurrencies(res.data.result));
       })
       .catch((error) => {
         errorHandler(error);
