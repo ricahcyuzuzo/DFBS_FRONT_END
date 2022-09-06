@@ -1,9 +1,47 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { backendUrl } from "../../constansts";
+import { errorHandler } from "../../helpers";
 import Footer from "../Footer/Footer";
 import HomeHeader from "../Headers/HomeHeader";
 import "../styles/home.scss";
 
 function Home() {
+  const [currencies, setCurrencies] = useState([]);
+
+  useEffect(() => {
+    fetchCurrencies();
+  }, []);
+
+  const fetchCurrencies = () => {
+    axios
+      .get(backendUrl + "/currencies/all/")
+      .then((res) => {
+        setCurrencies(res.data.result);
+      })
+      .catch((error) => {
+        errorHandler(error);
+      });
+  };
+  const returnCurrencies = () => {
+    for (let i = 0; i < 4; i++) {
+      return (
+        <div className="currencyContainer">
+          <h2>RWF/{currencies[i]?.code}</h2>
+          <div className="buySellContainer">
+            <div>
+              <p>BUY</p>
+              <p>{currencies[i]?.buyPrice}</p>
+            </div>
+            <div>
+              <p>SELL</p>
+              <p>{currencies[i]?.sellPrice}</p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
   return (
     <>
       <HomeHeader />
@@ -23,60 +61,7 @@ function Home() {
           </a>
         </div>
       </div>
-      <div className="currencies">
-        <div className="currencyContainer">
-          <h2>RWF/USD</h2>
-          <div className="buySellContainer">
-            <div>
-              <p>BUY</p>
-              <p>444465</p>
-            </div>
-            <div>
-              <p>SELL</p>
-              <p>444465</p>
-            </div>
-          </div>
-        </div>
-        <div className="currencyContainer">
-          <h2>RWF/USD</h2>
-          <div className="buySellContainer">
-            <div>
-              <p>BUY</p>
-              <p>444465</p>
-            </div>
-            <div>
-              <p>SELL</p>
-              <p>444465</p>
-            </div>
-          </div>
-        </div>
-        <div className="currencyContainer">
-          <h2>RWF/USD</h2>
-          <div className="buySellContainer">
-            <div>
-              <p>BUY</p>
-              <p>444465</p>
-            </div>
-            <div>
-              <p>SELL</p>
-              <p>444465</p>
-            </div>
-          </div>
-        </div>
-        <div className="currencyContainer">
-          <h2>RWF/USD</h2>
-          <div className="buySellContainer">
-            <div>
-              <p>BUY</p>
-              <p>444465</p>
-            </div>
-            <div>
-              <p>SELL</p>
-              <p>444465</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div className="currencies">{returnCurrencies()}</div>
       <div className="container">
         <div className="body">
           <p>

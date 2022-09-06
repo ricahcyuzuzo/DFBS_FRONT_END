@@ -33,7 +33,11 @@ const Login = () => {
         dispatch(setUserRole(res.data.role));
         dispatch(setAddress(res.data.token));
         dispatch(setUserToken(res.data.token));
-        navigate("/profile");
+        if (res.data.role === "user") {
+          navigate("/profile");
+        } else {
+          navigate("/admin");
+        }
         setLoading(false);
       })
       .catch((error) => {

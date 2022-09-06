@@ -14,7 +14,7 @@ function TopBar() {
       <div>
         <ul>
           <li>
-            <a href="#">Logout</a>
+            <a href="/logout">Logout</a>
           </li>
         </ul>
       </div>

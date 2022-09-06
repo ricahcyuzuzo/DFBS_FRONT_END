@@ -10,7 +10,9 @@ function HomeHeader() {
       <table>
         <tr>
           <td>
-            <img src={require("../../assets/images/logo1.png")} />
+            <a href="/">
+              <img src={require("../../assets/images/logo1.png")} />
+            </a>
           </td>
           <td>
             <h1>DFBS</h1>
@@ -30,12 +32,12 @@ function HomeHeader() {
             </a>
           </li>
           <li>
-            <a style={{ color: "#FDDC86" }} href="#">
+            <a style={{ color: "#FDDC86" }} href="/login">
               Login
             </a>
           </li>
           <li>
-            <a style={{ color: "#FDDC86" }} href="#">
+            <a style={{ color: "#FDDC86" }} href="/register">
               Register
             </a>
           </li>

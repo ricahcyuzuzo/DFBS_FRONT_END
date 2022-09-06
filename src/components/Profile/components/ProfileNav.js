@@ -12,7 +12,7 @@ const ProfileNav = () => {
             className="navbar fs-5 navbar-expand-lg "
           >
             <div className="container-fluid">
-              <a class="navbar-brand d-flex" href="#">
+              <a class="navbar-brand d-flex" href="/">
                 <img
                   src={require("../../../assets/images/logo1.png")}
                   alt="logo"

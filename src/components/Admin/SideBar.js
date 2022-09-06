@@ -1,6 +1,6 @@
 import React from "react";
 
-const SideBar = () => {
+const SideBar = ({ setActiveTab }) => {
   return (
     <>
       <div className="row mb-5">
@@ -25,11 +25,11 @@ const SideBar = () => {
               cursor: "pointer",
             }}
           >
-            <li>Dashboard</li>
-            <li>Currencies</li>
-            <li>Transactions</li>
-            <li>Clients</li>
-            <li>Logout</li>
+            <li onClick={() => setActiveTab("dashboard")}>Dashboard</li>
+            <li onClick={() => setActiveTab("currencies")}>Currencies</li>
+            <li onClick={() => setActiveTab("transactions")}>Transactions</li>
+            <li onClick={() => setActiveTab("clients")}>Clients</li>
+            <li onClick={() => (window.location = "/logout")}>Logout</li>
           </ul>
         </div>
       </div>

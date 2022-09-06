@@ -1,17 +1,17 @@
-.login{
-    width: 100%;
-    border:1px solid #0955B5;
-    margin-top: 70px;
-    padding: 2rem;
-    border-radius: 15px;
-    margin-bottom: 100px;
-    height: 300px;
+.login {
+  width: 100%;
+  border: 1px solid #0955b5;
+  margin-top: 70px;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 100px;
+  height: auto !important;
 }
-.login button{
-    width: 100%;
-    background-color: #FF8C0F;
-    color: #fff;
+.login button {
+  width: 100%;
+  background-color: #ff8c0f;
+  color: #fff;
 }
-input{
-    border:1px solid #0955B5 !important;
+input {
+  border: 1px solid #0955b5 !important;
 }

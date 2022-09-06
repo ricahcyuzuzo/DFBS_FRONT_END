@@ -7,7 +7,9 @@ function HomeHeader() {
       <table>
         <tr>
           <td>
-            <img src={require("../../assets/images/logo1.png")} />
+            <a href="/">
+              <img src={require("../../assets/images/logo1.png")} />
+            </a>
           </td>
           <td>
             <h1>DFBS</h1>
