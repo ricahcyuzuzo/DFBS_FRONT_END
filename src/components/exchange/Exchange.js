@@ -10,8 +10,25 @@ import { useFlutterwave, closePaymentModal } from "flutterwave-react-v3";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import { useNavigate } from "react-router-dom";
+import ReactModal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: '50%',
+    width: '50%',
+    height: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
+
 function Exchange() {
   const navigate = useNavigate();
+  const [modalIsOpen, setIsOpen] = useState(false);
   const { email, fullName, phone, role, token, address } = useSelector(
     (state) => state.user
   );
@@ -19,10 +36,13 @@ function Exchange() {
   const { currencies } = useSelector((state) => state.currencies);
   const [amountToGet, setAmountToGet] = useState(0);
   const [amount, setAmount] = useState(1);
+  const [pin, setPin] = useState('');
+
   const [fromCurrency, setFromCurrency] = useState("");
   const [toCurrency, setToCurrenyc] = useState("");
   const [phoneOrAccount, setPhoneOrAccount] = useState("");
   const [showLoader, setShowLoader] = useState(false);
+  let subtitle;
 
   const fetchCurrencies = () => {
     axios
@@ -86,25 +106,7 @@ function Exchange() {
       if (amount.trim() === "" || phoneOrAccount === "") {
         toastMessage("error", "All fields are required");
       } else {
-        setShowLoader(true);
-        handleFlutterPayment({
-          callback: (response) => {
-            console.log(response);
-            setShowLoader(false);
-            if (response.status !== "successful") {
-              toastMessage("Error", "Transaction failed!");
-              saveTransaction("Failed");
-            } else {
-              closePaymentModal();
-              toastMessage("success", "Transaction paid successfull!");
-              saveTransaction("Paid");
-            }
-          },
-          onClose: () => {
-            saveTransaction("Cancelled");
-            setShowLoader(false);
-          },
-        });
+        openModal();
       }
     }
   };
@@ -131,6 +133,20 @@ function Exchange() {
         errorHandler(error);
       });
   };
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+    saveTransaction('Cancelled');
+  }
 
   return (
     <>
@@ -195,6 +211,51 @@ function Exchange() {
           </div>
         </div>
       </div>
+      <ReactModal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Payment Simulation"
+      >
+        <button style={{
+          color: '#a12a12',
+          borderWidth: 1,
+          backgroundColor: '#fff',
+          borderColor: '#a12',
+          width: 30,
+          height: 30,
+          borderRadius: 15,
+          marginBottom: 20,
+
+        }} onClick={closeModal}>x</button>
+
+        <h3>Hi {fullName}, Please confirm with your PIN to proceed transaction. {amount} RWF to DFBS via MoMo</h3>
+        <input placeholder='0000' maxLength={4} onChange={(e) => setPin(e.target.value)} style={{
+          width: '100%',
+          height: 40,
+          borderRadius: 10,
+          borderColor: '#5d5add',
+          marginTop: 30,
+          paddingLeft: 10,
+        }} />
+
+        <button onClick={() => {
+          if(pin.length < 4){
+            alert('Please enter your pin.')
+            return false;
+          }
+          saveTransaction('Paid');
+        }} style={{
+          width: '100%',
+          height: 40,
+          backgroundColor: '#5d5add',
+          borderRadius: 10,
+          border: 0,
+          color: '#fff',
+          marginTop: 20,
+        }}>PAY</button>
+      </ReactModal>
       <Footer />
       <Loader showLoader={showLoader} />
     </>
