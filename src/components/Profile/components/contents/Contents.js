@@ -36,7 +36,7 @@ const Contents = ({ activeTab }) => {
                   <th>Amount Paid</th>
                   <th>Amount To Received</th>
                   <th>Date</th>
-                  <th>Received</th>
+                  <th>Account to receive Exchange.</th>
                   <th>Status</th>
                 </thead>
                 <tbody>
@@ -59,7 +59,7 @@ const Contents = ({ activeTab }) => {
                             {item.amountToGet} {item.toCurrency}
                           </td>
                           <td>{new Date(item.createdAt).toDateString()}</td>
-                          <td>{item.received ? "Yes" : "No"}</td>
+                          <td>{item.toAccount}</td>
                           <td
                             className={
                               item.status == "Paid"

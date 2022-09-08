@@ -42,6 +42,8 @@ function Exchange() {
   const [toCurrency, setToCurrenyc] = useState("");
   const [phoneOrAccount, setPhoneOrAccount] = useState("");
   const [showLoader, setShowLoader] = useState(false);
+  const [toAccount, setToAccount] = useState("");
+
   let subtitle;
 
   const fetchCurrencies = () => {
@@ -103,7 +105,7 @@ function Exchange() {
     if (email == "") {
       toastMessage("error", "You must be logged in, inorder to exchange ");
     } else {
-      if (amount.trim() === "" || phoneOrAccount === "") {
+      if (amount.trim() === "" || phoneOrAccount === "" || toAccount === "") {
         toastMessage("error", "All fields are required");
       } else {
         openModal();
@@ -120,6 +122,7 @@ function Exchange() {
         amountPaid: amount,
         amountToGet,
         phoneOrAccount,
+        toAccount,
         status,
         token,
       })
@@ -197,7 +200,18 @@ function Exchange() {
               className="form-control"
               value={phoneOrAccount}
               onChange={(e) => setPhoneOrAccount(e.target.value)}
-              placeholder="Enter account number or phone number for us to transfer the exchange"
+              placeholder="Enter phone number for payment initiation"
+              maxLength={10}
+            />
+            <input
+              type="number"
+              className="form-control"
+              value={toAccount}
+              style={{
+                marginTop: 20,
+              }}
+              onChange={(e) => setToAccount(e.target.value)}
+              placeholder="Enter the account number the choosen currency for receiving the exchange."
             />
           </div>
           <small>
